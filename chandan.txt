@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Login" method="post">  
+Name: <input type="text" name="userName"/><br/>  
+Password:<input type="password" name="userPass"/><br/>  
+<input type="submit" value="login"/>  
+</form>  
+</body>
+</html>
+
+
+
+package com.prodapt.servlet;
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;  
+  
+
+@SuppressWarnings("serial")
+public class Login extends HttpServlet {  
+  
+public void doPost(HttpServletRequest request, HttpServletResponse response)  
+        throws ServletException, IOException {  
+  
+    response.setContentType("text/html");  
+    PrintWriter out = response.getWriter();  
+          
+    String n=request.getParameter("userName");  
+    String p=request.getParameter("userPass");  
+          
+    if(n.equals("chandan") &&(p.equals("c"))
+    		){
+        RequestDispatcher rd=request.getRequestDispatcher("chandan");  
+        rd.forward(request, response);  
+    }  
+    else{  
+        RequestDispatcher rd=request.getRequestDispatcher("Hello.jsp");  
+        rd.include(request, response);  
+                      
+        }  
+    }  
+  
+}
+
+
+
+
+
+package com.prodapt.servlet;
+import java.io.*; 
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;  
+public class WelcomeServlet extends HttpServlet {  
+  
+    public void doPost(HttpServletRequest request, HttpServletResponse response)  
+        throws ServletException, IOException {  
+  
+    response.setContentType("text/html");  
+    PrintWriter out = response.getWriter();  
+          
+    String n=request.getParameter("userName");  
+    out.print("Welcome your username : "+n);  
+    }  
+  
+}  
