@@ -1,0 +1,104 @@
+package com.assignment16;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+@WebServlet("/FirstServlet")
+
+
+
+public class FirstServlet extends HttpServlet {  
+	
+	private static final long serialVersionUID = 1L;
+	public FirstServlet() {
+		super();
+	}
+public void doPost(HttpServletRequest request, HttpServletResponse response)  
+        throws ServletException, IOException {  
+  
+    response.setContentType("text/html");  
+    PrintWriter out = response.getWriter();  
+          
+    String n=request.getParameter("username");  
+    String p=request.getParameter("userpass");  
+    out.print("<br>Prodapt ");
+    if (p.equals("servlet")){  
+        RequestDispatcher rd=request.getRequestDispatcher("WelcomeServlet");  
+        rd.forward(request,response);  
+    }  
+    else{  
+        out.print("Sorry username or password error");  
+        RequestDispatcher rd=request.getRequestDispatcher("index.jsp");  
+        rd.include(request,response);  
+    }  
+          
+    out.close();  
+    }  
+}
+
+
+package com.assignment16;
+
+import java.io.IOException;  
+import java.io.PrintWriter;  
+  
+import javax.servlet.ServletException; 
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;  
+import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServletResponse;  
+@WebServlet("/WelcomeServlet")
+public class WelcomeServlet extends HttpServlet {  
+	private static final long serialVersionUID = 1L;
+	
+	
+	public WelcomeServlet() {
+        super();
+    }
+public void doPost(HttpServletRequest request, HttpServletResponse response)  
+    throws ServletException, IOException {  
+  
+    response.setContentType("text/html");  
+    PrintWriter out = response.getWriter();  
+          
+    String n=request.getParameter("username");  
+    out.print("Welcome "+n);  
+    out.print("<br>Hello");  
+    out.close();  
+    }  
+  
+}  
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body bgcolor=lime>
+<form action="FirstServlet" method="post">  
+Name:<input type="text" name="username" placeholder=username/><br/><br/>  
+Password:<input type="password" name="userpass"/><br/><br/>  
+<input type="submit" value="login"/>  
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+  
+	
+	
+	
+	
